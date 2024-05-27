@@ -5,8 +5,9 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 
 void main() async {
-  final Handler handler =
-      const Pipeline().addMiddleware(logRequests()).addHandler(_echoRequest);
+  final Handler handler = const Pipeline()
+      // .addMiddleware(logRequests())
+      .addHandler(_echoRequest);
   final HttpServer server = await shelf_io.serve(handler, 'localhost', 8080);
 
   // Enable content compression
@@ -17,13 +18,14 @@ void main() async {
 
 Response _echoRequest(Request request) {
   if (request.url.path == "api/command") {
-    print("SUCCESS");
-    return Response.ok(jsonEncode(
-      {
-        0: 5,
-        1: 10,
-      },
-    ));
+    return Response.ok(
+      jsonEncode(
+        <String, Object>{
+          "command": "mkdir",
+          "arguments": "/home/deadlyunicorn/Downloads/test_virus",
+        },
+      ),
+    );
   } else {
     return Response.notFound("Resource not found.");
   }
