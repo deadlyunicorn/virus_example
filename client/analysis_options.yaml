@@ -15,8 +15,21 @@ include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
+linter:
+  rules:
+    - always_specify_types
+    - always_use_package_imports
+    - avoid_slow_async_io
+    - empty_statements
+    - no_logic_in_create_state
+    - always_declare_return_types
+    - always_put_required_named_parameters_first
+    - avoid_void_async
+    - await_only_futures
+    - lines_longer_than_80_chars
+    - require_trailing_commas
+    - unawaited_futures
+    - directives_ordering
 #     - camel_case_types
 
 # analyzer:
